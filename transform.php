@@ -7,7 +7,7 @@ $host = $pieces['host'];
 
 // remove annoying spurious www
 $host = preg_replace('/^www\./', '', $host);
-j
+
 // and a .com while you are at it
 $host = preg_replace('/\.com$/', '', $host);
 
