@@ -1,23 +1,21 @@
 <?
-require 'vendor/autoload.php';
+//include('redis.php');
+function redisLink() {
+    static $r = false;
 
-Predis\Autoloader::register();
-
-function redis(){
-  static $redis;
-  if(!$redis) {
-    $redis = new Predis\Client();
-  } 
-  return $redis;
+    if ($r) return $r;
+    $r = new Redis();
+    $r->connect('localhost');
+    return $r;
 }
 
 function get($name) {
-  $redis = redis();
+  $redis = redisLink();
   return $redis->hget("url", $name);
 }
 
 function set($name, $url) {
-  $redis = redis();
+  $redis = redisLink();
   return $redis->hset("url", $name, $url);
 }
 

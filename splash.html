@@ -97,7 +97,7 @@ function doTransform(){
       display: 'none'
     });
     $("#transform").addClass("active");
-    $.post(window.location.toString(), {url: url}, function(ret) {
+    $.post("/", {url: url}, function(ret) {
       $("#transform").removeClass("active");
       if(ret.status) {
         $("#url").val("");
