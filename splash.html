@@ -1,0 +1,111 @@
+<!doctype html5>
+<link href='http://fonts.googleapis.com/css?family=Donegal+One' rel='stylesheet' type='text/css'>
+<style>
+body { 
+  background: url('img/textured_paper.png');
+  text-align: center;
+  font-family: 'Donegal One', serif;
+}
+h1 { 
+  margin-top:2em;
+  color: #102314;
+  margin-bottom: 0.25em;
+  font-size: 3.5em;
+  letter-spacing: 0.1em;
+  text-shadow: 2px 2px 1px rgba(30, 60, 40, 0.5);
+}
+h2 {
+  color: #081510;
+}
+p{
+  font-size:1.25em;
+  margin-bottom: 1.25em;
+  margin-top: 0;
+}
+
+button,input {
+  display: block;
+  font-family: 'Donegal One', serif;
+  font-size:1.5em;
+}
+button { float: right}
+
+input {
+  padding: 0.2em;
+  border-radius: 8px;
+}
+
+.active > #loader { display: inline-block; padding:0.58em 0 ;width:80px;}
+#loader           { display: none; }
+
+.active > #doTransform { display: none; }
+
+#transform{
+  text-align: center;
+  width: 190px;
+  display: block;
+  margin-top: 0.5em; 
+  float: right;
+}
+input{
+  width:25em
+}
+#link {
+  position:fixed;
+  display:block;
+  padding:1em;
+  bottom:0;
+  margin:0;
+  left:0;
+  color:#d0f4d8;
+  display:none;
+  background:rgba(16, 35, 20, 0.8);
+  width:100%;
+  font-size:1.25em;
+}
+div {
+  margin-top:1em;
+  border: 2px solid rgba(16, 35, 20, 0.3);
+  box-shadow: 0px 0px 3px 4px rgba(230, 250, 240, 0.5);
+  border-radius: 10px;
+  background: rgba(160, 190, 150, 0.45);
+  padding: 1.5em;
+  display: inline-block;
+}
+</style>
+<h1>ThisWillTake.Me</h1>
+<h2>Makes all URLs readable.</h2>
+
+<div>
+  <p>Drop a link below.</p>
+  <input id="url" type="text" placeholder="http://example.com/" autocomplete="off" value="">
+  <span id='transform'>
+    <img id="loader" src="img/ajax-loader.gif"i>
+    <button id="doTransform" onclick=doTransform()>Transform it!</button>
+  </span>
+</div>
+<p id="link"></p>
+
+<script>
+$(function(){
+  $("#url").focus();
+});
+function doTransform(){
+  var url = $("#url").val();
+  if(url.length) {
+    $("#link").css({
+      display: 'none'
+    });
+    $("#transform").addClass("active");
+    $.post(window.location.toString(), {url: url}, function(ret) {
+      $("#transform").removeClass("active");
+      if(ret.status) {
+        $("#url").val("");
+        $("#link").html("http://ThisWillTake.Me/" + ret.url).fadeIn(1000);
+        $("#url").focus();
+      }
+    }, 'json');
+  }
+}
+</script>
+<script src=jquery-1.9.1.min.js></script>
