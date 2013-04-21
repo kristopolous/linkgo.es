@@ -1,5 +1,5 @@
 <?
-$url = $_POST['url'];
+$url = trim($_POST['url']);
 
 // find the hose name
 $pieces = parse_url($url);
