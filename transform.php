@@ -8,6 +8,12 @@ $host = $pieces['host'];
 // remove annoying spurious www
 $host = preg_replace('/^www\./', '', $host);
 
+// split the domain into parts
+$hostParts = explode('.', $host);
+
+// get the nominative domain
+$domain = $hostParts[0];
+
 // parse the html
 $doc = new DOMDocument();
 @$doc->loadHTMLFile($url);
@@ -19,6 +25,12 @@ foreach($titleList as $title) {
 }
 
 // clean it up to make the url usable
+// dump the nominative domain if it appears at the beginning or end
+$name = preg_replace('/^' . $domain . '/i', '', $name);
+$name = preg_replace('/' . $domain . '$/i', '', $name);
+
+// trim the white-space after the face
+$name = trim($name, " \t\n\r\0\x0B-");
 $name = preg_replace('/[?|]/', '', $name);
 $name = preg_replace('/\s+/', '_', $name);
 
