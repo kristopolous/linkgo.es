@@ -1,5 +1,24 @@
 <?
-$url = trim($_POST['url']);
+$url = substr($_SERVER['REQUEST_URI'], 1);
+$usejson = false;
+if(strlen($url) == 0) {
+  $url = $_POST['url'];
+  $usejson = true;
+}
+
+function dump($status, $url, $destination) {
+  global $usejson;
+  if($usejson) {
+    echo json_encode(Array(
+      "status" => $status,
+      "url" => $url,
+      "destination" => $destination
+    ));
+  } else {
+    echo $url;
+  }
+  exit(0);
+}
 
 // find the hose name
 $pieces = parse_url($url);
@@ -29,12 +48,7 @@ foreach($titleList as $title) {
 }
 
 if(empty($name)) {
-  echo json_encode(Array(
-    "status" => true,
-    "url" => $url,
-    "destination" => $url
-  ));
-  exit(0);
+  dump(true, $url, $url);
 }
 
 // clean it up to make the url usable
@@ -70,9 +84,5 @@ for(;;) {
   }
 }
 
-echo json_encode(Array(
-  "status" => true,
-  "url" => "http://ThisWillTake.Me/" . $key,
-  "destination" => $url
-));
+dump(true, "http://ThisWillTake.Me/" . $key, $url);
 
