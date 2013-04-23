@@ -145,23 +145,7 @@ function initClipboard() {
   ZeroClipboard.setMoviePath("ZeroClipboard.swf")
   clip.setHandCursor( true );
   clip.addEventListener('mouseOver', function (client) {
-    // update the text on mouse over
     clip.setText($("#link").html());  
-  });
-  clip.addEventListener('complete', function (client, text) {
-    console.log("Copied text to clipboard: " + text );
-    /*
-    $("#clipboard-notice").css('display','block').animate({
-      height: "60px"
-    });
-    setTimeout(function(){
-      $("#clipboard-notice").animate({
-        height: "0"
-      }, function(){
-        this.style.display = 'none';
-      });
-    }, 8000);
-    */
   });
 
   clip.glue( 'clipboard-button', 'clipboard-wrapper' );
@@ -176,7 +160,7 @@ _gaq.push(['_trackPageview']);
 
 (function() {
   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  ga.src = 'http://www.google-analytics.com/ga.js';
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 </script>
