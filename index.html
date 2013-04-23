@@ -195,7 +195,7 @@ function doTransform(){
       display: 'none'
     });
     $("#transform").addClass("active");
-    $.post("/index.php", {url: url}, function(ret) {
+    $.post("/redir.php", {url: url}, function(ret) {
       $("#transform").removeClass("active");
       if(ret.status) {
         $("#url").val("");
