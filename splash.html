@@ -8,6 +8,10 @@ body {
   text-align: center;
   font-family: 'Donegal One', serif;
 }
+form {
+  margin: 0;
+  padding: 0;
+}
 h1 { 
   margin-top: 1.5em;
   color: #102314;
@@ -111,11 +115,13 @@ input {
 
 <div id="main">
   <p>Drop a link below (try youtube or a news site).</p>
-  <input id="url" type="text" placeholder="http://example.com/" autocomplete="off" value="">
-  <span id='transform'>
-    <img id="loader" src="img/ajax-loader.gif">
-    <button id="doTransform" onclick=doTransform()>Make it descriptive!</button>
-  </span>
+  <form method=GET action="javascript:doTransform()">
+    <input id="url" type="text" placeholder="http://example.com/" autocomplete="off" value="">
+    <span id='transform'>
+      <img id="loader" src="img/ajax-loader.gif">
+      <button id="doTransform">Make it descriptive!</button>
+    </span>
+  </form>
 </div>
 
 <script src=jquery-1.9.1.min.js></script>
