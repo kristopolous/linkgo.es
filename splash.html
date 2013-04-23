@@ -8,6 +8,11 @@ body {
   text-align: center;
   font-family: 'Donegal One', serif;
 }
+a {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #102314;
+}
 form {
   margin: 0;
   padding: 0;
@@ -15,10 +20,9 @@ form {
 h1 { 
   margin-top: 1.5em;
   color: #102314;
-  margin-bottom: 0.25em;
+  margin-bottom: 0;
   font-size: 3.5em;
   letter-spacing: 0.1em;
-  text-shadow: 2px 2px 1px rgba(30, 60, 40, 0.5);
 }
 code {
   position:fixed;
@@ -30,12 +34,20 @@ code {
   padding:0.25em 0;
   background: rgba(20, 40, 30, 0.9);
 }
+#title {
+  display: inline-block;
+  margin-bottom: 2em;
+}
 h2 {
-  color: #081510;
+  color: rgba(16, 35, 20, 0.80);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  margin-top: -0.5em;
+  float: right;
 }
 p {
   font-size:1.25em;
-  margin-bottom: 1.25em;
+  margin-bottom: 0;
   margin-top: 0;
 }
 
@@ -45,17 +57,32 @@ button,#url {
   font-size:1.5em;
 }
 button { 
-  font-size:1.35em;
-  padding:0.2em 0.5em;
-  margin-top:0.25em;
-  border-width:2px;
-  background: rgba(166,176,166,0.5);
-  float: right;
+  text-decoration: underline;
+  font-weight:bold;
+  font-size:1.5em;
+  width: 100%;
+  color: #d0f4d8;
+  background: transparent;
+  border:0;
+}
+#transform:active {
+  padding:0.5em 0 0.3em;
+}
+button:active{
+  color:#fff;
+  text-indent: 0.2em;
+}
+#transform:hover {
+  cursor: pointer;
+  background: rgba(10,180,40,0.8);
 }
 #url {
-  width: 25em;
-  padding: 0.2em;
-  border-radius: 8px;
+  width: 30em;
+  padding: 0.35em;
+  margin:1.25em 1.5em;
+  font-size: 1.25em;
+  border:2px solid rgba(10,100,40,0.8);
+  border-radius: 4px;
 }
 
 .active > #loader { display: inline-block; padding:0.58em 0 ;width:80px;}
@@ -65,10 +92,12 @@ button {
 
 #transform{
   text-align: center;
-  width: 280px;
+  width: 100%;
   display: block;
-  margin-top: 0.5em; 
-  float: right;
+  margin-top: 1em; 
+  padding:0.4em 0;
+  background: rgba(20,120,30,0.8);
+  border-radius: 0 0 7px 7px;
 }
 #linkContainer {
   display: none;
@@ -105,17 +134,14 @@ button {
 #main {
   margin-top: 1em;
   border-radius: 6px;
-  box-shadow: 
-  6px 6px 0 0 rgba(48, 100, 50, 0.6),
-  3px 3px 1px 2px rgba(48, 100, 50, 0.3);
-  border: 1px solid #465;
+  padding-top: 1.75em;
   background: rgba(160, 190, 150, 0.85);
-  padding: 1.5em;
   display: inline-block;
 }
 #donate {
   color:#343;
-  margin-top:1em;
+  font-size:0.85em;
+  margin-top:2em;
   line-height:40px;
 }
 </style>
@@ -125,8 +151,10 @@ button {
     <a onclick=clipboard() id=clipboard-button class=btn>Copy to Clipboard</a>
   </div>
 </div>
-<h1>ThisWillTake.Me</h1>
-<h2>Demystifies URLs.</h2>
+<div id="title">
+  <h1>ThisWillTake.Me</h1>
+  <h2>Demystifies URLs.</h2>
+</div>
 
 <div id="main">
   <p>Drop a link below (try youtube or a news site).</p>
@@ -134,18 +162,16 @@ button {
     <input id="url" type="text" placeholder="http://example.com/" autocomplete="off" value="">
     <span id='transform'>
       <img id="loader" src="img/ajax-loader.gif">
-      <button id="doTransform">Make it descriptive!</button>
+      <button id="doTransform">Convert It!</button>
     </span>
   </form>
 </div>
 <br>
  
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="donate">
-    This service is free and unlimited.  
+    <a onclick="this.parentNode.submit()">Donate</a> to this free and unlimited service. 
     <input type="hidden" name="cmd" value="_s-xclick">
     <input type="hidden" name="hosted_button_id" value="X4J4BD86VTXWS">
-    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
   </form>
 <code>
   <b>API:</b> Do an HTTP GET to <u>convert.thiswilltake.me/(url to convert)</u>
