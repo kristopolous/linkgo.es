@@ -1,4 +1,4 @@
 Options +FollowSymLinks
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f 
-RewriteRule ^(.+)$	\/index.php?url=$1 [L]
+RewriteRule ^(.+)$	\/redir.php?url=$1 [L]

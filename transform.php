@@ -1,9 +1,9 @@
 <?
-$url = substr($_SERVER['REQUEST_URI'], 1);
-$usejson = false;
+$usejson = true;
+$url = @$_POST['url'];
 if(strlen($url) == 0) {
-  $url = $_POST['url'];
-  $usejson = true;
+  $url = substr($_SERVER['REQUEST_URI'], 1);
+  $usejson = false;
 }
 
 if(preg_match('/^https?:/i', $url) == 0) {
