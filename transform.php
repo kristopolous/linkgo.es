@@ -6,6 +6,10 @@ if(strlen($url) == 0) {
   $usejson = true;
 }
 
+if(preg_match('/^https?:/i', $url) == 0) {
+  $url = "http://" . $url;
+}
+
 function dump($status, $url, $destination) {
   global $usejson;
   if($usejson) {
