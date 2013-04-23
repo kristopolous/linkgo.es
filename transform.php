@@ -21,10 +21,20 @@ $domain = $hostParts[0];
 $doc = new DOMDocument();
 @$doc->loadHTMLFile($url);
 
+$name = '';
 // use the title as the name
 $titleList = $doc->getElementsByTagName("title");
 foreach($titleList as $title) {
   $name = $title->nodeValue;
+}
+
+if(empty($name)) {
+  echo json_encode(Array(
+    "status" => true,
+    "url" => $url,
+    "destination" => $url
+  ));
+  exit(0);
 }
 
 // clean it up to make the url usable
@@ -62,7 +72,7 @@ for(;;) {
 
 echo json_encode(Array(
   "status" => true,
-  "url" => $key,
+  "url" => "http://ThisWillTake.Me/" . $key,
   "destination" => $url
 ));
 
