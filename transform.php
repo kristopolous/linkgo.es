@@ -88,5 +88,5 @@ for(;;) {
   }
 }
 
-dump(true, "http://ThisWillTake.Me/" . $key, $url);
+dump(true, "http://rt2.me/" . $key, $url);
 
