@@ -3,7 +3,7 @@ require('db.php');
 
 $parts = explode('.', $_SERVER['HTTP_HOST']);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' || $parts[0] == 'convert') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' || $parts[0] == 'a') {
   require('transform.php');
   // If this is a post, we need to convert a link and then return it
 } else {
