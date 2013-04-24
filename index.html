@@ -63,13 +63,14 @@ button {
   width: 100%;
   color: #d0f4d8;
   background: transparent;
+  padding:0.3em 0;
   border:0;
 }
 #transform:active {
-  padding:0.5em 0 0.3em;
 }
 button:active{
   color:#fff;
+  padding:0.4em 0 0.2em;
   text-indent: 0.2em;
 }
 button:hover{
@@ -98,7 +99,7 @@ button:hover{
   width: 100%;
   display: block;
   margin-top: 1em; 
-  padding:0.4em 0;
+  padding:0;
   background: rgba(20,120,30,0.8);
   border-radius: 0 0 7px 7px;
 }
@@ -119,11 +120,11 @@ button:hover{
   margin:0;
 }
 #clipboard-wrapper:hover {
-  background: rgba(78, 140, 80, 0.5);
+  background: rgba(10,180,40,0.8);
   color: #243;
 }
 #clipboard-wrapper:active {
-  background: rgba(32, 65, 40, 0.6);
+  padding: 0.35em 0 0.15em;
   color:#fff;
 }
 #clipboard-wrapper {
@@ -210,6 +211,9 @@ function doTransform(){
 }
 
 function initClipboard() {
+  if(clip) {
+    return;
+  }
   clip = new ZeroClipboard.Client();
   ZeroClipboard.setMoviePath("ZeroClipboard.swf")
   clip.setHandCursor( true );
