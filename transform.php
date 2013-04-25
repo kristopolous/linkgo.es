@@ -4,7 +4,7 @@ if(!isset($type)) {
 }
 $url = @$_POST['url'];
 if(strlen($url) == 0) {
-  $url = substr($_SERVER['REQUEST_URI'], 1);
+  $url = urldecode(substr($_SERVER['REQUEST_URI'], 1));
 }
 
 if(preg_match('/^https?:/i', $url) == 0) {
