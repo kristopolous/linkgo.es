@@ -1,21 +1,27 @@
 <?
-//include('redis.php');
-function redisLink() {
-    static $r = false;
+require 'vendor/autoload.php';
 
-    if ($r) return $r;
-    $r = new Redis();
-    $r->connect('localhost');
-    return $r;
+Predis\Autoloader::register();
+
+function redis(){
+  static $redis;
+  if(!$redis) {
+    $redis = new Predis\Client();
+  } 
+  return $redis;
+}
+
+function cached($url) {
+  return redis()->hget("urlrev", $url);
 }
 
 function get($name) {
-  $redis = redisLink();
-  return $redis->hget("url", $name);
+  return redis()->hget("url", $name);
 }
 
 function set($name, $url) {
-  $redis = redisLink();
-  return $redis->hset("url", $name, $url);
+  $redis = redis();
+  $redis->hset("url", $name, $url);
+  $redis->hset("urlrev", $url, $name);
 }
 

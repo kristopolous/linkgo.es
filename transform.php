@@ -1,27 +1,34 @@
 <?
-$usejson = true;
+if(!isset($type)) {
+  $type = 'json';
+}
 $url = @$_POST['url'];
 if(strlen($url) == 0) {
   $url = substr($_SERVER['REQUEST_URI'], 1);
-  $usejson = false;
 }
 
 if(preg_match('/^https?:/i', $url) == 0) {
   $url = "http://" . $url;
 }
 
-function dump($status, $url, $destination) {
-  global $usejson;
-  if($usejson) {
+function done($url, $destination) {
+  global $type;
+  if($type == 'json') {
     echo json_encode(Array(
-      "status" => $status,
       "url" => $url,
       "destination" => $destination
     ));
-  } else {
+  } else if($type == 'raw') {
     echo $url;
+  } else if($type == 'js') {
+    header('Content-type: application/javascript');
+    echo "rt2(\"$destination\",\"$url\");";
   }
   exit(0);
+}
+
+if($attempt = cached($url)) {
+  done($attempt, $url);
 }
 
 // find the hose name
@@ -52,7 +59,7 @@ foreach($titleList as $title) {
 }
 
 if(empty($name)) {
-  dump(true, $url, $url);
+  done(true, $url, $url);
 }
 
 // clean it up to make the url usable
@@ -88,5 +95,5 @@ for(;;) {
   }
 }
 
-dump(true, "http://rt2.me/" . $key, $url);
+done("http://rt2.me/" . $key, $url);
 

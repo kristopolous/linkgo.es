@@ -153,8 +153,8 @@ button:hover{
 </style>
 <div id="linkContainer">
   <p id="link">http://www.youtube.com/watch?v=vWiCqUD-uJo</p>
-  <div id=clipboard-wrapper>
-    <a onclick=clipboard() id=clipboard-button class=btn>Copy to Clipboard</a>
+  <div id='clipboard-wrapper'>
+    <a onclick='clipboard()' id='clipboard-button' class='btn'>Copy to Clipboard</a>
   </div>
 </div>
 <div id="title">
@@ -172,15 +172,17 @@ button:hover{
     </span>
   </form>
 </div>
+
 <br>
  
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="donate">
-    <a onclick="this.parentNode.submit()">Donate</a> to this free and unlimited service. 
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="X4J4BD86VTXWS">
-  </form>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="donate">
+  <a onclick="this.parentNode.submit()">Donate</a> to this free and unlimited service. 
+  <input type="hidden" name="cmd" value="_s-xclick">
+  <input type="hidden" name="hosted_button_id" value="X4J4BD86VTXWS">
+</form>
+
 <code>
-  <b>API:</b> Do an HTTP GET to <u>a.rt2.me/(url to convert)</u> <a href="https://github.com/kristopolous/linkgo.es">(source code)</a>
+  <b>API:</b> Do an HTTP GET to <u>raw|js.rt2.me/(url to convert)</u> <a href="https://github.com/kristopolous/linkgo.es">(source code)</a>
 </code>
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -231,10 +233,8 @@ var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-28399789-3']);
 _gaq.push(['_trackPageview']);
 
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'http://www.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = 'http://www.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 </script>
 <script src=ZeroClipboard.min.js></script>
