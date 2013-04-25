@@ -342,8 +342,3 @@ class Redis {
     }
     
 }   
-
-//$r =& new Redis();
-//var_dump($r->info());
-
-?>
