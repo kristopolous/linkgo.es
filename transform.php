@@ -71,6 +71,7 @@ $name = preg_replace('/' . $domain . '$/i', '', $name);
 // trim the white-space after the face
 $name = trim($name, " \t\n\r\0\x0B-");
 $name = preg_replace('/[:\&!\'\"?|]/', '', $name);
+$name = trim($name, " \t\n\r\0\x0B-");
 $name = preg_replace('/\s+/', '_', $name);
 
 // try to see if it's available
