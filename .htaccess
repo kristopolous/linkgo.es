@@ -2,3 +2,6 @@ Options +FollowSymLinks
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteRule ^(.+)$	\/redir.php?url=$1 [L]
+
+RewriteCond %{HTTP_HOST} www\.rt2\.me$  [NC]
+RewriteRule ^(.*)$ http://rt2.me/$1 [R=301,L]
