@@ -1,9 +1,9 @@
 function rt2(urlToConvert, /* function */ callback /* ( converted url ) */) {
   // if this is a string, then this is the result.
-  if(!!(callback === '' || (callback && callback.charCodeAt && callback.substr)) {
+  if(!!(callback === '' || (callback && callback.charCodeAt && callback.substr))) {
     if (rt2.cb[urlToConvert])  {
       rt2.cb[urlToConvert](callback);
-      delete rt2.cb[urlToConvert]);
+      delete rt2.cb[urlToConvert];
     } 
   } else {
 
@@ -16,7 +16,7 @@ function rt2(urlToConvert, /* function */ callback /* ( converted url ) */) {
     }
     var scr = rt2.scr = document.createElement('script'); 
     scr.src = "http://js.rt2.me/" + escape(urlToConvert);
-    document.body.insertChild(scr);
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(scr, s);
   }
 }
 rt2.cb = {};

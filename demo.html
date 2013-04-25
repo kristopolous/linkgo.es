@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<link href='http://fonts.googleapis.com/css?family=Donegal+One' rel='stylesheet' type='text/css'>
+<link href='style.css' rel='stylesheet' type='text/css'>
+<title>JS api demo</title>
+<style>
+#output:before { 
+  content: "output";
+  position: absolute;
+  padding: 0 1em;
+  top: 0;
+  left: 0;
+  font-family: 'Donegal One', serif;
+  color: #d0f4d8;
+  background: #102314;
+}
+#output {
+  position:relative;
+  padding: 2em 1em 1em 1em;
+  border: 2px solid #102314;
+}
+#content {
+margin-top:3em;
+margin-left:2em;
+width: 90%;
+text-align: left;
+}
+button { 
+  display: inline-block;
+  width: auto;
+  padding: 0.3em;
+  background: rgba(10,180,40,0.8);
+  margin-bottom:1em;
+}
+#back {
+  display:block;
+  position: absolute;
+  top:0;
+  left:0;
+  padding: 0.15em 0.5em;
+  color: #d0f4d8;
+  text-decoration: none;
+  background: #102314;
+}
+</style>
+</head>
+<body>
+<a id="back" href="/">&lt; rt2.me</a>
+<h1>JS api demo</h1>
+<div id="content">
+<p>Include <a href="rt2.js">rt2.js</a> and then use it as follows:</p>
+<code>rt2([url to convert], [callback of converted url]);
+</code>
+
+<h2>Example:</h2>
+
+<p>There's a div below that has an ID of "output". Here is the code that will run:</p>
+<code>document.getElementById("output").innerHTML = "Fetching...";
+
+rt2("http://www.youtube.com/watch?v=dQw4w9WgXcQ", function(result) {
+  document.getElementById("output").innerHTML = result;
+});
+</code>
+
+<button onclick=demo()>Run this code</button>
+<div id="output"></div>
+</div>
+<script src="rt2.js"></script>
+<script>
+function demo(){
+  document.getElementById("output").innerHTML = "Fetching...";
+  rt2("http://www.youtube.com/watch?v=dQw4w9WgXcQ", function(result) {
+    document.getElementById("output").innerHTML = result;
+  });
+}
+</script>
