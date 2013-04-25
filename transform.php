@@ -13,16 +13,17 @@ if(preg_match('/^https?:/i', $url) == 0) {
 
 function done($url, $destination) {
   global $type;
-  if($type == 'json') {
-    echo json_encode(Array(
-      "url" => $url,
-      "destination" => $destination
-    ));
-  } else if($type == 'raw') {
+  $url = "http://rt2.me/" . $url;
+  if($type == 'raw') {
     echo $url;
   } else if($type == 'js') {
     header('Content-type: application/javascript');
     echo "rt2(\"$destination\",\"$url\");";
+  } else {
+    echo json_encode(Array(
+      "url" => $url,
+      "destination" => $destination
+    ));
   }
   exit(0);
 }
@@ -95,5 +96,5 @@ for(;;) {
   }
 }
 
-done("http://rt2.me/" . $key, $url);
+done($key, $url);
 

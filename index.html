@@ -200,14 +200,12 @@ function doTransform(){
     $("#transform").addClass("active");
     $.post("/redir.php", {url: url}, function(ret) {
       $("#transform").removeClass("active");
-      if(ret.status) {
-        $("#url").val("");
-        $("#link").html(ret.url);
-        $("#linkContainer").slideDown(1000, function(){
-          initClipboard();
-        });
-        $("#url").focus();
-      }
+      $("#url").val("");
+      $("#link").html(ret.url);
+      $("#linkContainer").slideDown(1000, function(){
+        initClipboard();
+      });
+      $("#url").focus();
     }, 'json');
   }
 }
