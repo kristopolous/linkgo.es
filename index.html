@@ -1,4 +1,5 @@
 <!doctype html5>
+<base href="http://rt2.me/">
 <link href='http://fonts.googleapis.com/css?family=Donegal+One' rel='stylesheet' type='text/css'>
 <link href='style.css' rel='stylesheet' type='text/css'>
 <title>rt2.me</title>
@@ -38,43 +39,34 @@
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
-var clip;
 $(function(){
   $("#url").focus();
+  if(window.location.pathname.length > 1) {
+    $("#link").html(window.location.toString());
+    $("#linkContainer").slideDown(1000, function(){
+      var clip = new ZeroClipboard.Client();
+      ZeroClipboard.setMoviePath("ZeroClipboard.swf")
+      clip.setHandCursor( true );
+      clip.addEventListener('mouseOver', function (client) {
+        clip.setText($("#link").html());  
+      });
+
+      clip.glue( 'clipboard-button', 'clipboard-wrapper' );
+      $("#ZeroClipboardMovie_1").css('opacity',0.001);
+    });
+  }
 });
 function doTransform(){
   var url = $("#url").val();
   if(url.length) {
-    $("#linkContainer").css({
-      display: 'none'
-    });
+    $("#linkContainer").css('display', 'none');
     $("#transform").addClass("active");
     $.post("/redir.php", {url: url}, function(ret) {
-      $("#transform").removeClass("active");
-      $("#url").val("");
-      $("#link").html(ret.url);
-      $("#linkContainer").slideDown(1000, function(){
-        initClipboard();
-      });
-      $("#url").focus();
+      window.location=ret.url;
     }, 'json');
   }
 }
 
-function initClipboard() {
-  if(clip) {
-    return;
-  }
-  clip = new ZeroClipboard.Client();
-  ZeroClipboard.setMoviePath("ZeroClipboard.swf")
-  clip.setHandCursor( true );
-  clip.addEventListener('mouseOver', function (client) {
-    clip.setText($("#link").html());  
-  });
-
-  clip.glue( 'clipboard-button', 'clipboard-wrapper' );
-  $("#ZeroClipboardMovie_1").css('opacity',0.001);
-}
 function clipboard(){
   clip.setText($("#link").html());  
 }
