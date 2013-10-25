@@ -1,18 +1,16 @@
 (function(){
   var 
-    id = "rt2me$$" + parseInt((""+Math.random()).slice(2), 10).toString(36),
+    id = "rt2me$$" + Math.random(),
     anchorList,
     size,
     script,
     iframeList = [],
-    offset = 0,
     compat = ((window.addEventListener) ?
       ['addEventListener', 'load'] :
       ['attachEvent', 'onload']);
 
   window[id] = function(obj) {
     var 
-      pretitle,
       title = obj[0],
       ix = obj[1];
 
@@ -28,9 +26,7 @@
       return;
     }
 
-    pretitle = anchorList[ix].getAttribute('title');
-
-    if(!pretitle) {
+    if(! anchorList[ix].getAttribute('title') ) {
       anchorList[ix].setAttribute('title', title);
     }
   }
