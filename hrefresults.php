@@ -22,7 +22,9 @@ foreach ($pubsub as $message) {
       if($data[1] == -2) {
         $remaining = $data[0];
       } else {
-        $all[] = $data;
+        if(strlen($data[0]) > 0) {
+          $all[] = $data;
+        }
         $remaining --;
       }
       if($remaining == 0) {
