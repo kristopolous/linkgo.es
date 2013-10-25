@@ -40,7 +40,7 @@
       'height:1px'
     ].join(';'));
 
-    iframe.src="batchload.html?" + list;
+    iframe.src="//rt2.me/batchload.html?" + list;
 
     document.body.appendChild(iframe);
   }, false);
