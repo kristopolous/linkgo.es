@@ -11,17 +11,17 @@ function redis(){
   return $redis;
 }
 
-function cached($url) {
-  return redis()->hget("urlrev", $url);
+function cached($url, $key="url") {
+  return redis()->hget($key . "rev", $url);
 }
 
-function get($name) {
-  return redis()->hget("url", $name);
+function get($name, $key="url") {
+  return redis()->hget($key, $name);
 }
 
-function set($name, $url) {
+function set($name, $url, $key="url") {
   $redis = redis();
-  $redis->hset("url", $name, $url);
-  $redis->hset("urlrev", $url, $name);
+  $redis->hset($key, $name, $url);
+  $redis->hset($key . "rev", $url, $name);
 }
 
