@@ -12,6 +12,11 @@
 <div id="title">
   <h1>rt2.me</h1>
   <h2>Demystifies URLs.</h2>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="donate">
+    <a onclick="this.parentNode.submit()">Donate</a> to this free and unlimited service. 
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="X4J4BD86VTXWS">
+  </form>
 </div>
 <br>
 <div id="main">
@@ -27,11 +32,9 @@
 
 <br>
  
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="donate">
-  <a onclick="this.parentNode.submit()">Donate</a> to this free and unlimited service. 
-  <input type="hidden" name="cmd" value="_s-xclick">
-  <input type="hidden" name="hosted_button_id" value="X4J4BD86VTXWS">
-</form>
+
+<p id='new'><b>New!</b>
+Give your <tt>&lt;a href&gt;'s</tt> descriptive hovers by including <tt>"//rt2.me/href.js"</tt>.</p>
 
 <footer>
   <b>API:</b> Do an HTTP GET to [ raw | <a href="js-api.html">js</a> ].rt2.me/(url to convert) <a href="https://github.com/kristopolous/linkgo.es" style=float:right>(project source code)</a>

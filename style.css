@@ -23,6 +23,10 @@ h1 {
   font-size: 3.5em;
   letter-spacing: 0.1em;
 }
+#new { 
+margin-top: 1em;
+display:block;
+}
 footer {
   position: fixed;
   bottom: 0;
@@ -34,15 +38,15 @@ footer {
   background: rgba(20, 40, 30, 0.9);
 }
 #title {
-  display: inline-block;
-  margin-bottom: 2em;
+  text-align: left;
+  float: left;
 }
 #title h2 {
   color: rgba(16, 35, 20, 0.80);
   font-weight: 400;
   letter-spacing: 0.1em;
   margin-top: -0.5em;
-  float: right;
+  margin-bottom: 0;
 }
 code {
   white-space: pre;
@@ -153,7 +157,6 @@ button:hover{
 }
 #donate {
   color: #343;
-  font-size: 0.85em;
-  margin-top: 2em;
+  font-size: 0.75em;
   line-height: 40px;
 }
