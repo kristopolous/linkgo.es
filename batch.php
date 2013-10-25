@@ -7,13 +7,13 @@ $client = new Predis\Client(array(
   'read_write_timeout' => 0
 ));
 
-$name = $_POST['func'];
-$urlList = explode("\n", $_POST['url']);
-$offset = $_GET['offset'];
+$name = $_POST['f'];
+$urlList = explode("\n", $_POST['u']);
+$offset = $_GET['o'];
 $ix = intval($offset);
 
 if($ix == 0) {
-  $client->publish($name, json_encode(Array(intval($_GET['total']), -2)));
+  $client->publish($name, json_encode(Array(intval($_GET['t']), -2)));
 }
 
 foreach($urlList as $url) {
