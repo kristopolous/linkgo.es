@@ -79,7 +79,7 @@
     script.src = 'http://rt2.me/hrefresults.php?c=' + id;
     document.body.appendChild(script);
 
-    anchorList = Array.prototype.slice.call(document.getElementsByTagName("a"));
+    anchorList = document.getElementsByTagName("a");
 
     // parallelize it.
     size = Math.max(Math.floor(anchorList.length / 10), 15);
