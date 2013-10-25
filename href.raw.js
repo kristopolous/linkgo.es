@@ -51,7 +51,7 @@
     document.body.appendChild(iframe);
 
     var 
-      batchurl = '//rt2.me/batch.php?o=' + offset;
+      batchurl = 'http://rt2.me/batch.php?o=' + offset;
       doc = iframe.contentDocument || iframe.contentWindow.document,
       form = doc.body.appendChild(doc.createElement('form')),
       tarea = form.appendChild(doc.createElement('textarea')),
@@ -76,7 +76,7 @@
   window[compat[0]](compat[1], function(){
     script = document.createElement('script');
     script.setAttribute('type', 'text/javascript');
-    script.src = '//rt2.me/hrefresults.php?c=' + id;
+    script.src = 'http://rt2.me/hrefresults.php?c=' + id;
     document.body.appendChild(script);
 
     anchorList = Array.prototype.slice.call(document.getElementsByTagName("a"));
