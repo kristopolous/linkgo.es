@@ -18,23 +18,22 @@
     <input type="hidden" name="hosted_button_id" value="X4J4BD86VTXWS">
   </form>
 </div>
-<br>
-<div id="main">
-  <p>Drop a link below (try a <a onclick='$("#url").val("http://www.youtube.com/watch?v=dQw4w9WgXcQ")'>youtube link</a>).</p>
-  <form method=GET action="javascript:doTransform()">
-    <input id="url" type="text" placeholder="http://example.com/" autocomplete="off" value="">
-    <span id='transform'>
-      <img id="loader" src="ajax-loader.gif">
-      <button id="doTransform">Convert It!</button>
-    </span>
-  </form>
+
+<div id="main-wrap">
+  <div id="main">
+    <p>Drop a link below<span id='extra'> (try a <a onclick='$("#url").val("http://www.youtube.com/watch?v=dQw4w9WgXcQ")'>youtube link</a>)</span>.</p>
+    <form method=GET action="javascript:doTransform()">
+      <input id="url" type="text" placeholder="http://example.com/" autocomplete="off" value="">
+      <span id='transform'>
+        <img id="loader" src="ajax-loader.gif">
+        <button id="doTransform">Convert It!</button>
+      </span>
+    </form>
+  </div>
+  <p id='new'><b>New!</b>
+  Give your <tt>&lt;a href&gt;'s</tt> descriptive hovers by including <tt>"//rt2.me/href.js"</tt>.</p>
+
 </div>
-
-<br>
- 
-
-<p id='new'><b>New!</b>
-Give your <tt>&lt;a href&gt;'s</tt> descriptive hovers by including <tt>"//rt2.me/href.js"</tt>.</p>
 
 <footer>
   <b>API:</b> Do an HTTP GET to [ raw | <a href="js-api.html">js</a> ].rt2.me/(url to convert) <a href="https://github.com/kristopolous/linkgo.es" style=float:right>(project source code)</a>
