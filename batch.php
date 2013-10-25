@@ -18,6 +18,8 @@ if($ix == 0) {
 
 foreach($urlList as $url) {
   $url = trim($url);
+  $url = explode('#', $url);
+  $url = $url[0];
 
   echo "$url \r\n";
   flush_buffers();
@@ -25,8 +27,10 @@ foreach($urlList as $url) {
   if(! ($title = cached($url, 'full')) ) {
     $title = get_title($url);
   }
+ 
   set($title, $url, 'full');
 
   $client->publish($name, json_encode(Array($title, $ix++)));
+
 }
 exit(0);

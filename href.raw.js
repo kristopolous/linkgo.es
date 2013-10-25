@@ -1,6 +1,6 @@
 (function(){
   var 
-    id = "rt2me$$" + parseInt(Math.random().toString().slice(2), 10).toString(36),
+    id = "rt2me$$" + parseInt((""+Math.random()).slice(2), 10).toString(36),
     anchorList,
     size,
     script,
@@ -86,7 +86,7 @@
     anchorList = Array.prototype.slice.call(document.getElementsByTagName("a"));
 
     // parallelize it.
-    size = Math.max(Math.floor(anchorList.length / 10), 5);
+    size = Math.max(Math.floor(anchorList.length / 10), 15);
 
     var 
       ix = 0,
