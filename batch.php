@@ -21,11 +21,12 @@ foreach($urlList as $url) {
   $url = explode('#', $url);
   $url = $url[0];
 
-  echo "$url \r\n";
-  flush_buffers();
+  echo "$url\r\n";
 
   if(! ($title = cached($url, 'full')) ) {
-    $title = get_title($url);
+    if(gettype($title) != 'string') {
+      $title = get_title($url);
+    }
   }
  
   set($title, $url, 'full');

@@ -10,25 +10,25 @@
       ['attachEvent', 'onload']);
 
   window[id] = function(obj) {
-    var 
-      title = obj[0],
-      ix = obj[1];
+    while(obj.length) {
+      var 
+        entry = obj.pop(),
+        title = entry[0],
+        ix = entry[1];
 
-    if(ix == -1) {
-      // Give the final batch some time to close.
-      setTimeout(function(){
-        while(iframeList.length) {
-          document.body.removeChild(iframeList[0]);
-          iframeList.shift();
-        }
-        document.body.removeChild(script);
-      }, 2000);
-      return;
+      if(! anchorList[ix].getAttribute('title') ) {
+        anchorList[ix].setAttribute('title', title);
+      }
     }
 
-    if(! anchorList[ix].getAttribute('title') ) {
-      anchorList[ix].setAttribute('title', title);
-    }
+    // Give the final batch some time to close.
+    setTimeout(function(){
+      while(iframeList.length) {
+        document.body.removeChild(iframeList[0]);
+        iframeList.shift();
+      }
+      document.body.removeChild(script);
+    }, 2000);
   }
 
   function process(offset) {

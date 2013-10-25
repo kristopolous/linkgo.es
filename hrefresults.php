@@ -13,6 +13,7 @@ $channel = $_GET['c'];
 $pubsub->subscribe($channel);
 
 $remaining = 100;
+$all = array();
 
 foreach ($pubsub as $message) {
   switch ($message->kind) {
@@ -21,12 +22,11 @@ foreach ($pubsub as $message) {
       if($data[1] == -2) {
         $remaining = $data[0];
       } else {
-        echo "{$channel}({$message->payload});\r\n";
-        flush_buffers();
+        $all[] = $data;
         $remaining --;
       }
       if($remaining == 0) {
-        echo "{$channel}(['',-1]);\r\n";
+        echo "self['$channel'](" . json_encode($all) . ");";
         unset($pubsub);
         exit(0);
       }
