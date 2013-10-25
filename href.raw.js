@@ -84,16 +84,9 @@
     // parallelize it.
     size = Math.max(Math.floor(anchorList.length / 10), 15);
 
-    var 
-      ix = 0,
-      ival = setInterval(function() {
-        if(ix < anchorList.length) {
-          process(ix);
-          ix += size;
-        } else {
-          clearInterval(ival);
-        }
-      }, 500);
+    for( var ix = 0; ix < anchorList.length; ix += size;) {
+      process(ix);
+    }
   }, false);
 
 })();
