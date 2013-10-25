@@ -1,0 +1,10 @@
+<!doctype html>
+<body onload=geturl()>
+<form method="post" action="batch.php">
+<textarea name="url" id="url"></textarea> </form>
+<script>
+function geturl(){
+  document.getElementById('url').innerHTML = top[location.search.slice(1)].join("\n");
+  document.forms[0].submit();
+}
+</script>

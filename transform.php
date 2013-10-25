@@ -1,4 +1,6 @@
 <?
+include_once('functions.php');
+
 if(!isset($type)) {
   $type = 'json';
 }
@@ -48,16 +50,7 @@ $hostParts = explode('.', $host);
 // get the nominative domain
 $domain = $hostParts[0];
 
-// parse the html
-$doc = new DOMDocument();
-@$doc->loadHTMLFile($url);
-
-$name = '';
-// use the title as the name
-$titleList = $doc->getElementsByTagName("title");
-foreach($titleList as $title) {
-  $name = $title->nodeValue;
-}
+$name = get_title($url);
 
 if(empty($name)) {
   done(true, $url, $url);
