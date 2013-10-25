@@ -1,10 +1,15 @@
 <!doctype html>
-<body onload='geturl()'>
+<html>
+<body>
 <form method="post" action="batch.php">
 <input name='fname' type='text' id='fname'>
 <textarea name="url" id="url"></textarea> </form>
+</body>
 <script>
-function geturl(){
+document.geturl = function(list){
+  alert(list);
+
+  console.log(top.window);
   document.getElementById('fname').value = location.search.slice(1);
   document.getElementById('url').innerHTML = top[location.search.slice(1)].urlList.join("\n");
   document.forms[0].submit();
