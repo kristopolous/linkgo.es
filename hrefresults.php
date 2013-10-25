@@ -27,10 +27,10 @@ foreach ($pubsub as $message) {
       }
       if($remaining == 0) {
         echo "{$channel}(['',-1]);\r\n";
+        unset($pubsub);
         exit(0);
       }
       break;
   }
 }
-unset($pubsub);
 
