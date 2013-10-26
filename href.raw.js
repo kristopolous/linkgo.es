@@ -1,6 +1,6 @@
 (function(){
   var 
-    id = "rt2me$$" + Math.random(),
+    id = "rt2me$" + Math.random(),
     anchorList,
     size,
     script,
@@ -10,12 +10,9 @@
       ['attachEvent', 'onload']);
 
   window[id] = function(obj) {
-    while(obj.length) {
-      var 
-        entry = obj.pop(),
-        title = entry[0],
-        ix = entry[1];
-
+    for(var ix in obj) {
+      var title = obj[ix];
+      ix = parseInt(ix);
       if(! anchorList[ix].getAttribute('title') ) {
         anchorList[ix].setAttribute('title', title);
       }
