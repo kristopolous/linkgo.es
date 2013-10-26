@@ -13,7 +13,7 @@
     for(var ix in obj) {
       var title = obj[ix];
       ix = parseInt(ix);
-      anchorList[parseInt(ix)].title = anchorList[ix].title || title;
+      anchorList[ix].title = anchorList[ix].title || title;
     }
 
     // Give the final batch some time to close.
