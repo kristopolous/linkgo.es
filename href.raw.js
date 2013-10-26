@@ -13,16 +13,13 @@
     for(var ix in obj) {
       var title = obj[ix];
       ix = parseInt(ix);
-      if(! anchorList[ix].getAttribute('title') ) {
-        anchorList[ix].setAttribute('title', title);
-      }
+      anchorList[parseInt(ix)].title = anchorList[ix].title || title;
     }
 
     // Give the final batch some time to close.
     setTimeout(function(){
       while(iframeList.length) {
-        document.body.removeChild(iframeList[0]);
-        iframeList.shift();
+        document.body.removeChild(iframeList.shift());
       }
       document.body.removeChild(script);
     }, 2000);
