@@ -12,7 +12,7 @@ $pubsub = $client->pubSub();
 $channel = $_GET['c'];
 $pubsub->subscribe($channel);
 
-$remaining = 100;
+$remaining = 0;
 $all = array();
 
 foreach ($pubsub as $message) {
@@ -20,7 +20,7 @@ foreach ($pubsub as $message) {
     case 'message':
       $data = json_decode($message->payload, true);
       if($data[1] == -2) {
-        $remaining = $data[0];
+        $remaining += $data[0];
       } else {
         if(strlen($data[0]) > 0) {
           $all[$data[1]] = $data[0];
