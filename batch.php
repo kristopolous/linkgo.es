@@ -7,8 +7,8 @@ $client = new Predis\Client(array(
   'read_write_timeout' => 0
 ));
 
-$name = $_POST['f'];
 $urlList = explode("\n", $_POST['u']);
+$name = trim(array_shift($urlList));
 $offset = $_GET['o'];
 $ix = intval($offset);
 

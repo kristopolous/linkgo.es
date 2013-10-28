@@ -1,13 +1,11 @@
 (function(){
   var 
     id = "rt2me$" + Math.random(),
-    anchorList,
+    anchorList = [],
     size,
     script,
     iframeList = [],
-    compat = ((window.addEventListener) ?
-      ['addEventListener', 'load'] :
-      ['attachEvent', 'onload']);
+    ival;
 
   window[id] = function(obj) {
     for(var ix in obj) {
@@ -28,7 +26,7 @@
   function process(offset) {
     var 
       iframe = document.createElement('iframe'),
-      urlList = [];
+      urlList = [id];
 
     iframeList.push(iframe);
 
@@ -48,8 +46,7 @@
       batchurl = 'http://rt2.me/batch.php?o=' + offset;
       doc = iframe.contentDocument || iframe.contentWindow.document,
       form = doc.body.appendChild(doc.createElement('form')),
-      tarea = form.appendChild(doc.createElement('textarea')),
-      func = form.appendChild(doc.createElement('input'));
+      tarea = form.appendChild(doc.createElement('textarea'));
 
     if(!offset) {
       batchurl += "&t=" + anchorList.length;
@@ -61,26 +58,29 @@
     tarea.name = 'u';
     tarea.innerHTML = urlList.join("\n");
 
-    func.name = 'f';
-    func.value = id;
-
     form.submit();
   }
 
-  window[compat[0]](compat[1], function(){
-    script = document.createElement('script');
-    script.setAttribute('type', 'text/javascript');
-    script.src = 'http://rt2.me/hrefresults.php?c=' + id;
-    document.body.appendChild(script);
+  // this seems to work better than the onready like handlers
+  ival = setInterval(function(){
+    try {
+      anchorList = document.getElementsByTagName("a");
+    } catch(ex) { }
 
-    anchorList = document.getElementsByTagName("a");
+    if(anchorList.length) {
+      clearInterval(ival);
+      script = document.createElement('script');
+      script.setAttribute('type', 'text/javascript');
+      script.src = 'http://rt2.me/hrefresults.php?c=' + id;
+      document.body.appendChild(script);
 
-    // parallelize it.
-    size = Math.max(Math.floor(anchorList.length / 10), 15);
+      // parallelize it.
+      size = Math.max(Math.floor(anchorList.length / 10), 15);
 
-    for( var ix = 0; ix < anchorList.length; ix += size) {
-      process(ix);
+      for( var ix = 0; ix < anchorList.length; ix += size) {
+        process(ix);
+      }
     }
-  }, false);
+  }, 100);
 
 })();
