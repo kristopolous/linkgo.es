@@ -9,8 +9,7 @@ $client = new Predis\Client(array(
 
 $urlList = explode("\n", $_POST['u']);
 $name = trim(array_shift($urlList));
-$offset = $_GET['o'];
-$ix = intval($offset);
+$ix = intval($_GET['o']);
 
 if($ix == 0) {
   $client->publish($name, json_encode(Array(intval($_GET['t']), -2)));
@@ -20,8 +19,6 @@ foreach($urlList as $url) {
   $url = trim($url);
   $url = explode('#', $url);
   $url = $url[0];
-
-  echo "$url\r\n";
 
   if(! ($title = cached($url, 'full')) ) {
     if(gettype($title) != 'string') {
