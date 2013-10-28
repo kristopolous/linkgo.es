@@ -27,10 +27,10 @@ foreach($urlList as $url) {
     if(gettype($title) != 'string') {
       $title = get_title($url);
     }
+
+    set($title, $url, 'full');
   }
  
-  set($title, $url, 'full');
-
   $client->publish($name, json_encode(Array($title, $ix++)));
 
 }
