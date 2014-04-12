@@ -14,8 +14,8 @@ function get_title($url) {
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
-  curl_setopt($ch, CURLOPT_TIMEOUT, 4);
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+  curl_setopt($ch, CURLOPT_TIMEOUT, 30);
   curl_setopt($ch, CURLOPT_USERAGENT, array_rand($uaList));
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
