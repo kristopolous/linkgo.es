@@ -1,5 +1,6 @@
 <?
 require 'vendor/autoload.php';
+define("LISTSIZE", -2);
 
 Predis\Autoloader::register();
 

@@ -19,7 +19,7 @@ foreach ($pubsub as $message) {
   switch ($message->kind) {
     case 'message':
       $data = json_decode($message->payload, true);
-      if($data[1] == -2) {
+      if($data[1] == LISTSIZE) {
         $remaining += $data[0];
       } else {
         if(strlen($data[0]) > 0) {

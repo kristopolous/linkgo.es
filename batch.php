@@ -12,7 +12,7 @@ $name = trim(array_shift($urlList));
 $ix = intval($_GET['o']);
 
 if($ix == 0) {
-  $client->publish($name, json_encode(Array(intval($_GET['t']), -2)));
+  $client->publish($name, json_encode(Array(intval($_GET['t']), LISTSIZE)));
 }
 
 foreach($urlList as $url) {
