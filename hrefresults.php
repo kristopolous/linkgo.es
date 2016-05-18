@@ -23,7 +23,7 @@ foreach ($pubsub as $message) {
         $remaining += $data[0];
       } else {
         if(strlen($data[0]) > 0) {
-          $all[$data[1]] = $data[0];
+          $all[$data[1]] = iconv("UTF-8", "ASCII//IGNORE", $data[0]);
         }
         $remaining --;
       }
